@@ -1,0 +1,48 @@
+# JMJRST
+options.properties
+
+# SVN
+.svn
+repo/
+
+# VIM locks
+*.swp
+
+# LibreOffice locks
+.~lock.*#
+
+*.tmp
+
+# Word temporary
+~$*.doc*
+#
+# # Excel temporary
+~$*.xls*
+#
+# # Excel Backup File
+*.xlk
+
+# Eclipse
+.metadata/
+.recommenders/
+.checkstyle
+.classpath
+.project
+.settings
+.checkstyle
+bin/
+target/
+
+# IntelliJ IDE
+.idea/*
+*.iws
+*.iml
+*.eml
+/out/
+
+# Mac
+.DS_Store
+__MACOSX/
+
+# Windows
+Thumbs.db
