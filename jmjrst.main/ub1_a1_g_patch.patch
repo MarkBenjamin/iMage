@@ -1,0 +1,58 @@
+diff --git a/iMage/jmjrst.main/src/main/java/org/jis/generator/Consumer.java b/iMage/jmjrst.main/src/main/java/org/jis/generator/Consumer.java
+index 6bfd38c..b37dbd9 100644
+--- a/iMage/jmjrst.main/src/main/java/org/jis/generator/Consumer.java
++++ b/iMage/jmjrst.main/src/main/java/org/jis/generator/Consumer.java
+@@ -22,8 +22,6 @@
+ import org.jis.Main;
+ import org.jis.options.Options;
+ 
+-import com.sun.image.codec.jpeg.ImageFormatException;
+-
+ /**
+  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+  * 
+@@ -59,10 +57,6 @@
+         {
+           process(obj);
+         }
+-        catch (ImageFormatException e)
+-        {
+-          e.printStackTrace();
+-        }
+         catch (IOException e)
+         {
+           e.printStackTrace();
+@@ -75,7 +69,7 @@
+     }
+   }
+ 
+-  void process(Element obj) throws ImageFormatException, IOException
++  void process(Element obj) throws IOException
+   {
+     m.p_monitor.setNote("Aktuelles Bild: " + obj.file.getName());
+     try
+diff --git a/iMage/jmjrst.main/src/main/java/org/jis/generator/Generator.java b/iMage/jmjrst.main/src/main/java/org/jis/generator/Generator.java
+index fc32799..d2ef402 100644
+--- a/iMage/jmjrst.main/src/main/java/org/jis/generator/Generator.java
++++ b/iMage/jmjrst.main/src/main/java/org/jis/generator/Generator.java
+@@ -58,8 +58,6 @@
+ import org.jis.Main;
+ import org.jis.options.Options;
+ 
+-import sun.awt.image.ImageFormatException;
+-
+ /**
+  * @author <a href="http://www.jgeppert.com">Johannes Geppert</a>
+  *
+@@ -298,10 +296,9 @@
+    * 		int, heigth of the scaled image
+    * @return File
+    * @throws IOException
+-   * @throws ImageFormatException
+    */
+   public File generateImage(File imageFile, File iout, boolean print, int width, int height,
+-      String praefix) throws ImageFormatException, IOException {
++      String praefix) throws IOException {
+ 
+     // Output Image
+     File fo = new File(iout, praefix + imageFile.getName());

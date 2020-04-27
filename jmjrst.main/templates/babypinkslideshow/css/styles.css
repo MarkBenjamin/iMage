@@ -1,0 +1,92 @@
+* {
+margin: 0;
+padding: 0;
+}
+
+body {
+color: #299ad4;
+font: 0.7em "Lucida Grande", Georgia, "Times New Roman", Times, serif;
+background: #fff;
+text-align: center;
+}
+
+#k1 {
+margin-top: 2px;
+background-image: url('../images/header.png');
+background-repeat: no-repeat;
+background-position: top left;
+
+}
+
+h1 {
+margin-left: 30px;
+color: #fff;
+text-align: left;
+font-size: 3.8em;
+height: 50px;
+width: 770px;
+}
+
+h2 {
+margin-left: 75px;
+font-size: 2.0em;
+color: #241d5c;
+text-align: left;
+height: 60px;
+width: 770px;
+}
+
+div#main {
+width: 770px;
+position: absolute;
+left: 50%;
+margin-left: -385px;
+overflow: hidden;
+text-align: center;
+}
+
+div#content {
+float: left;
+margin-left: auto;
+margin-right: auto;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+div#content div {
+float: left;
+}
+div#content div.picture {
+float: left;
+margin: 2px;
+padding: 5px;
+height: 135px;
+width: 175px; 
+background-image: url('../images/thumb_background.png');
+background-repeat: no-repeat;
+background-position: top center;
+}
+
+img {
+border: 0px;
+padding: 3px;
+}
+
+div#footer {
+background-image: url('../images/footer.png');
+background-repeat: no-repeat;
+background-position: top left;
+clear: left;
+margin-top: 50px;
+color: #fff;
+display: block;
+height: 55px;
+padding: 1em 0;
+text-align: center;
+top: 0;
+width: 770px;
+}
+
+a {
+color: #fff;
+}

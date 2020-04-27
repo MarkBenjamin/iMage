@@ -1,0 +1,156 @@
+* {
+margin: 0;
+padding: 0;
+}
+
+body {
+color: #ff9999;
+font: 0.7em "Lucida Grande", Georgia, "Times New Roman", Times, serif;
+background: #fff;
+text-align: center;
+}
+
+#k1 {
+margin-top: 2px;
+background-image: url('../images/header.png');
+background-repeat: no-repeat;
+background-position: top left;
+
+}
+
+h1 {
+margin-left: 20px;
+color: #fff;
+padding-top: 10px;
+text-align: left;
+font-size: 3.8em;
+display: block;
+height: 40px;
+width: 770px;
+}
+
+h2 {
+margin-left: 65px;
+font-size: 2.0em;
+color: #9b3535;
+text-align: left;
+display: block;
+height: 60px;
+width: 770px;
+}
+
+div#main {
+width: 770px;
+position: absolute;
+left: 50%;
+margin-left: -385px;
+overflow: hidden;
+text-align: center;
+}
+
+div#nav {
+float: left;
+height: 500px;
+width: 125px;
+}
+
+div#nav ul {
+border-bottom: 1px solid #ff9999;
+margin-top: 30px;
+}
+
+div#nav li {
+color: #ff9999;
+text-align: left;
+}
+
+div#nav li {
+border-top: 1px solid #ff9999;
+font-size: 1.2em;
+height: 27px;
+width: 125px;
+}
+
+div#nav li a {
+color: #ff9999;
+display: block;
+font-weight: normal;
+height: 100%;
+padding-top: 3px;
+padding-left: 8px;
+text-decoration: none;
+}
+
+div#nav li a:focus, div#nav li a:hover, div#nav li a:active { 
+font-weight: bold;
+color: #9b3535;
+}
+
+div#content {
+float: left;
+margin-left: auto;
+margin-right: auto;
+padding: 10px 0 15px 55px;
+width: 580px;
+height: 500px;
+}
+
+div#content div {
+float: left;
+}
+div#content div.picture {
+float: left;
+margin: 15px 20px 15px 0;
+margin-right: 5px;
+padding: 5px;
+height: 135px;
+width: 175px; 
+background-image: url('../images/thumb_background.png');
+background-repeat: no-repeat;
+background-position: top center;
+}
+
+div#preview {
+margin: auto;
+margin-top: 50px;
+margin-bottom: 20px;
+padding: 5px;
+height: 353px;
+width: 466px; 
+background-image: url('../images/thumb_preview.png');
+background-repeat: no-repeat;
+background-position: top center;
+}
+
+div#prevnav {
+position: absolute; 
+width: 700px; 
+text-align:center; 
+left: 50%; 
+margin-left: -350px; 
+margin-top: 150px;
+}
+
+img {
+border: 0px;
+padding: 3px;
+}
+
+div#footer {
+background-image: url('../images/footer.png');
+background-repeat: no-repeat;
+background-position: top left;
+clear: left;
+margin-top: 50px;
+color: #fff;
+display: block;
+height: 55px;
+padding: 1em 0;
+text-align: center;
+top: 0;
+width: 770px;
+}
+
+a {
+color: #fff;
+}

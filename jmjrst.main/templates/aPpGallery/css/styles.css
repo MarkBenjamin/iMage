@@ -1,0 +1,120 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: #515254;
+	font: 0.7em Georgia, "Times New Roman", Times, serif;
+	background: #FED9A2;
+	text-align: center;
+}
+
+h1 {
+	text-align: left;
+	color: #433B38;
+	font-size: 3.8em;
+	display: block;
+	height: 60px;
+	width: 770px;
+	margin-left: 10px;
+}
+
+h2 {
+	text-align: left;
+	color: #515254;
+	font-size: 2.3em;
+	display: block;
+	height: 30px;
+	width: 770px;
+	margin-left: 50px;
+}
+
+#hp1 {
+	height: 100px;
+	padding: 0px;
+	margin-top: 5px;
+}
+
+div#main {
+	width: 770px;
+	left: 50%;
+	right: 50%;
+	margin-left: -385px;
+	position: absolute;
+}
+
+div#clearing {
+	clear: both;
+}
+
+.imagelink img {
+	padding-top: 7px;
+	filter: progid : DXImageTransform.Microsoft.Alpha ( opacity = 80 );
+	-moz-opacity: 0.8;
+	opacity: 0.8;
+}
+
+.imagelink:HOVER img {
+	filter: progid : DXImageTransform.Microsoft.Alpha ( opacity = 100 );
+	-moz-opacity: 1;
+	opacity: 1;
+}
+
+li.picture {
+	margin: 10px 10px;
+	padding: 5px;
+	float: left;
+	list-style: none;
+	cursor: pointer;
+	background: #433B38;
+	border: 1px solid #9C7A4D;
+}
+
+li.picture:hover {
+	background: #9C7A4D;
+	border: 1px solid #433B38;
+}
+
+img {
+	border: 0px;
+	padding: 3px;
+}
+
+div#footer {
+	clear: left;
+	color: #FED9A2;
+	background: #9C7A4D;
+	display: block;
+	height: auto;
+	padding: 1em 0;
+	text-align: center;
+	top: 0;
+	width: 770px;
+	margin-top: 20px;
+}
+
+#xofpp,#closeBoxpp,#playpp,#stoppp,#imageTitlepp {
+	cursor: pointer;
+	margin: 0 10px;
+	color: white;
+	float: left;
+}
+
+#nextButtonBoxpp,#previousButtonBoxpp,#xofpp {
+	cursor: pointer;
+	margin: 0 10px;
+	color: white;
+	float: right;
+}
+
+#thumbImgpp img {
+	height: 100px;
+}
+
+#gallery,#gallery ul {
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	width: 600px;
+}

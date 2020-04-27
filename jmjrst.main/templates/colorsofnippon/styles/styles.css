@@ -1,0 +1,160 @@
+* {
+margin: 0;
+padding: 0;
+}
+
+body {
+color: #990000;
+font: 0.7em arial, helvetica, sans-serif;
+background: #fff;
+text-align: center;
+}
+
+h1 {
+text-align: left;
+color: #000;
+font-size: 3.8em;
+display: block;
+height: 100px;
+width: 770px;
+margin-top: 5px;
+margin-left: 15px;
+}
+
+#hp1 {
+background-image: url(../images/colors_of_nippon_border.png);
+background-repeat: no-repeat;
+background-position: top left;
+height: 100px;
+padding: 0px;
+margin-top: 5px;
+}
+
+div#main {
+width: 770px;
+position: absolute;
+left: 50%;
+margin-left: -385px;
+overflow: hidden;
+text-align: center;
+}
+
+div#nav {
+float: left;
+height: 500px;
+width: 150px;
+}
+
+div#nav ul {
+border-bottom: 1px solid #990000;
+margin-top: 30px;
+}
+
+div#nav li {
+color: #990000;
+text-align: left;
+}
+
+div#nav li {
+border-top: 1px solid #990000;
+font-size: 1.2em;
+height: 27px;
+width: 150px;
+}
+
+div#nav li a {
+color: #990000;
+display: block;
+font-weight: normal;
+height: 100%;
+padding-top: 3px;
+padding-left: 8px;
+text-decoration: none;
+}
+
+div#nav li a:focus, div#nav li a:hover, div#nav li a:active { 
+font-weight: bold;
+}
+
+div#content {
+margin-left: 155px;
+padding-top: 15px;
+width: 600px;
+height: 500px;
+}
+
+div#content div {
+float: left;
+}
+
+.picture {
+margin-left: 10px;
+margin-top: 10px;
+text-align: center;
+width: 170px;
+height: 130px;
+padding: 4px;
+background: #fff;
+border: 1px solid #990000;
+}
+
+.picture:hover {
+background: #990000;
+border: 1px solid #000;
+}
+
+.imagelink img{
+padding-top: 7px;
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80);
+-moz-opacity: 0.8;
+opacity:0.8;
+}
+
+.imagelink:HOVER img {
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+-moz-opacity: 1;
+opacity:1;
+}
+
+
+div#preview {
+margin: auto;
+margin-top: 50px;
+margin-bottom: 20px;
+text-align: center;
+height: 342px;
+height/**/:/**/ 348px;
+width: 464px; 
+background: #990000;
+border: 1px solid #000;
+}
+
+div#prevnav {
+position: absolute; 
+width: 700px; 
+text-align:center; 
+left: 50%; 
+margin-left: -350px; 
+margin-top: 150px;
+}
+
+img {
+border: 0px;
+padding: 3px;
+}
+
+div#footer {
+clear: left;
+color: #fff;
+background: #990000;
+display: block;
+height: auto;
+padding: 1em 0;
+text-align: center;
+top: 0;
+width: 770px;
+}
+
+a {
+color: #fff;
+}
