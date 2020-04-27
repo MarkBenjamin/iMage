@@ -22,8 +22,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class CloseListner extends WindowAdapter {
-  public void windowClosing(WindowEvent event)
-  {
+  public void windowClosing(WindowEvent event) {
     event.getWindow().setEnabled(false);
     // System.exit(999);
   }
