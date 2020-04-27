@@ -39,6 +39,7 @@ target/
 *.iml
 *.eml
 /out/
+/target/
 
 # Mac
 .DS_Store
@@ -46,3 +47,4 @@ __MACOSX/
 
 # Windows
 Thumbs.db
+
