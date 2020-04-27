@@ -29,21 +29,19 @@
 		<!--added by Siyan-->
 		<fileSet>
 			<includes>
-				<include>.gitignore</include>
+				<include>*.gitignore</include>
 			</includes>
 		</fileSet>
 
 		<fileSet>
-			<directory>src/assembly</directory>
 			<includes>
-				<include>src.xml</include>
+				<include>*.launch</include>
 			</includes>
 		</fileSet>
 
 		<fileSet>
-			<directory>src/test/resources</directory>
 			<includes>
-				<include>checkstyle_swt1.xml</include>
+				<include>LICENSE</include>
 			</includes>
 		</fileSet>
 
