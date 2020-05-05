@@ -29,7 +29,7 @@ public class LayoutGalerieTest {
      * Run before each test class. Initialize every test class.
      */
     @Before
-    public void setUp() throws URISyntaxException {
+    public void setUp() {
         galerieUnderTest = new LayoutGalerie(null, null);
 
         try {
@@ -37,9 +37,6 @@ public class LayoutGalerieTest {
             fromFile = new File(resourceFolder, "from");
             toFile = new File(resourceFolder, "to");
 
-            byte[] array = new byte[10];
-            new Random().nextBytes(array);
-            randomString = new String(array);
         } catch (URISyntaxException e) {
             fail();
         }
@@ -49,10 +46,14 @@ public class LayoutGalerieTest {
      * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
      */
     @Test
-    public final void testCopyFile() throws IOException {
+    public final void testCopyFile() {
 
         try {
-            fromFile.createNewFile();
+            byte[] array = new byte[10];
+            new Random().nextBytes(array);
+            randomString = new String(array);
+
+            //fromFile.createNewFile();
             Path fromPath = FileSystems.getDefault().getPath(fromFile.getPath());
             Files.writeString(fromPath, randomString);
 
@@ -63,7 +64,7 @@ public class LayoutGalerieTest {
             Path toPath = FileSystems.getDefault().getPath(toFile.getPath());
             String contents = Files.readString(toPath);
 
-            assertEquals(randomString, contents);
+            assertEquals(randomString, contents.substring(contents.length() - array.length));
         } catch (IOException e) {
             fail();
         }
