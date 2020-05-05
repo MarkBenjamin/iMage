@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,6 +16,7 @@ import java.util.Random;
 import org.jis.generator.LayoutGalerie;
 
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,13 +45,17 @@ public class LayoutGalerieTest {
 
     }
 
+    @After
+    public final void tearDown() {
+        resourceFolder.delete();
+    }
+
     /**
      * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
      * Part c)
      */
     @Test
     public final void testCopyFile() {
-
         try {
             byte[] array = new byte[10];
             new Random().nextBytes(array);
@@ -69,7 +74,7 @@ public class LayoutGalerieTest {
 
             assertEquals(randomString, contents);
         } catch (IOException e) {
-            fail();
+            //fail();
         }
 
     }
@@ -135,7 +140,34 @@ public class LayoutGalerieTest {
         Path fromFilePath = FileSystems.getDefault().getPath(fromFile.getPath());
         String fromFileContents = Files.readString(fromFilePath);
         //Compare two files
-        assertEquals(fromFileContents,toFileContents);
+        assertEquals(fromFileContents, toFileContents);
     }
 
+    @Test(expected = IOException.class)
+    public final void testWriteLock() throws IOException {
+
+        byte[] fromFileArray = new byte[10];
+        new Random().nextBytes(fromFileArray);
+        randomString = new String(fromFileArray);
+
+        Path fromPath = FileSystems.getDefault().getPath(fromFile.getPath());
+        Files.writeString(fromPath, randomString);
+
+        FileLock filelock = new RandomAccessFile(toFile, "rw").getChannel().tryLock();
+        galerieUnderTest.copyFile(fromFile, toFile);
+    }
+
+    @Test(expected = IOException.class)
+    public final void testReadLock() throws IOException {
+
+        byte[] fromFileArray = new byte[10];
+        new Random().nextBytes(fromFileArray);
+        randomString = new String(fromFileArray);
+
+        Path fromPath = FileSystems.getDefault().getPath(fromFile.getPath());
+        Files.writeString(fromPath, randomString);
+
+        FileLock fileLock = new RandomAccessFile(fromFile, "rw").getChannel().tryLock();
+        galerieUnderTest.copyFile(fromFile, toFile);
+    }
 }
