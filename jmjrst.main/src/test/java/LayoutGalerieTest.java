@@ -46,6 +46,7 @@ public class LayoutGalerieTest {
 
     /**
      * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
+     * Part c)
      */
     @Test
     public final void testCopyFile() {
@@ -66,7 +67,7 @@ public class LayoutGalerieTest {
             Path toPath = FileSystems.getDefault().getPath(toFile.getPath());
             String contents = Files.readString(toPath);
 
-            assertEquals(randomString, contents.substring(contents.length() - array.length));
+            assertEquals(randomString, contents);
         } catch (IOException e) {
             fail();
         }
@@ -75,6 +76,7 @@ public class LayoutGalerieTest {
 
     /**
      * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
+     * Part d)
      */
     @Test(expected = FileNotFoundException.class)
     public final void testCopyFile2() throws IOException {
@@ -83,6 +85,7 @@ public class LayoutGalerieTest {
 
     /**
      * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
+     * Part d)
      */
     @Test(expected = FileNotFoundException.class)
     public final void testCopyFile3() throws IOException {
@@ -90,12 +93,49 @@ public class LayoutGalerieTest {
     }
 
     /**
-     * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
-     */
+     * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}
+     * Part d)
+     **/
     @Test(expected = FileNotFoundException.class)
     public final void testCopyFile4() throws IOException {
         fromFile = new File(resourceFolder.toURI());
         galerieUnderTest.copyFile(fromFile, toFile);
+    }
+
+    /**
+     * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
+     * Part e)
+     */
+    @Test
+    public final void testCopyFile5() throws IOException {
+        //Create a existed File named toFile.
+        byte[] array = new byte[10];
+        new Random().nextBytes(array);
+        randomString = new String(array);
+
+        Path toPath = FileSystems.getDefault().getPath(toFile.getPath());
+        Files.writeString(toPath, randomString);
+
+        assertTrue(toFile.exists());
+
+        //Create a from file.
+        byte[] fromFileArray = new byte[10];
+        new Random().nextBytes(fromFileArray);
+        randomString = new String(fromFileArray);
+
+        Path fromPath = FileSystems.getDefault().getPath(fromFile.getPath());
+        Files.writeString(fromPath, randomString);
+
+        galerieUnderTest.copyFile(fromFile, toFile);
+
+        //fromFile Strings and toFile strings
+        Path toFilePath = FileSystems.getDefault().getPath(toFile.getPath());
+        String toFileContents = Files.readString(toFilePath);
+
+        Path fromFilePath = FileSystems.getDefault().getPath(fromFile.getPath());
+        String fromFileContents = Files.readString(fromFilePath);
+        //Compare two files
+        assertEquals(fromFileContents,toFileContents);
     }
 
 }

@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -473,8 +474,16 @@ public class LayoutGalerie {
     }
 
     public void copyFile(File file, File ziel) throws FileNotFoundException, IOException {
+        //change part
+       // Path toPath = FileSystems.getDefault().getPath(ziel.getPath());
+        URI zielURI = ziel.toURI();
+        ziel.delete();
+        File outFile = new File(zielURI);
+
+
+        //
         in = new BufferedInputStream(new FileInputStream(file));
-        out = new BufferedOutputStream(new FileOutputStream(ziel, true));
+        out = new BufferedOutputStream(new FileOutputStream(outFile, true));
         int bytes = 0;
         while ((bytes = in.read()) != -1) {
             out.write(bytes);
