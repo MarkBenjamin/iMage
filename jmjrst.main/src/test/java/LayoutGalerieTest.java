@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.FileSystems;
@@ -25,21 +26,22 @@ public class LayoutGalerieTest {
     private File toFile;
     private String randomString;
 
+    private File resourceFolder;
+
+    public LayoutGalerieTest() {
+    }
+
     /**
      * Run before each test class. Initialize every test class.
      */
     @Before
-    public void setUp() {
+    public final void setUp() throws URISyntaxException {
         galerieUnderTest = new LayoutGalerie(null, null);
 
-        try {
-            final File resourceFolder = new File(this.getClass().getResource(File.separator).toURI());
-            fromFile = new File(resourceFolder, "from");
-            toFile = new File(resourceFolder, "to");
+        resourceFolder = new File(this.getClass().getResource(File.separator).toURI());
+        fromFile = new File(resourceFolder, "from");
+        toFile = new File(resourceFolder, "to");
 
-        } catch (URISyntaxException e) {
-            fail();
-        }
     }
 
     /**
@@ -69,6 +71,31 @@ public class LayoutGalerieTest {
             fail();
         }
 
+    }
+
+    /**
+     * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
+     */
+    @Test(expected = FileNotFoundException.class)
+    public final void testCopyFile2() throws IOException {
+        galerieUnderTest.copyFile(resourceFolder, toFile);
+    }
+
+    /**
+     * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
+     */
+    @Test(expected = FileNotFoundException.class)
+    public final void testCopyFile3() throws IOException {
+        galerieUnderTest.copyFile(fromFile, resourceFolder);
+    }
+
+    /**
+     * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
+     */
+    @Test(expected = FileNotFoundException.class)
+    public final void testCopyFile4() throws IOException {
+        fromFile = new File(resourceFolder.toURI());
+        galerieUnderTest.copyFile(fromFile, toFile);
     }
 
 }
