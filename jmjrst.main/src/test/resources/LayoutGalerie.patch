@@ -1,0 +1,126 @@
+Index: jmjrst.main/src/main/java/org/jis/generator/LayoutGalerie.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- jmjrst.main/src/main/java/org/jis/generator/LayoutGalerie.java	(revision a500b16dc52c96f07ee4fdc6e258f9b3b359a7cf)
++++ jmjrst.main/src/main/java/org/jis/generator/LayoutGalerie.java	(revision 2909f574a91dcc5456da4b904abf803af8367903)
+@@ -23,6 +23,7 @@
+ import java.io.FileOutputStream;
+ import java.io.FileReader;
+ import java.io.IOException;
++import java.net.URI;
+ import java.util.ArrayList;
+ import java.util.Vector;
+ 
+@@ -473,8 +474,16 @@
+     }
+ 
+     public void copyFile(File file, File ziel) throws FileNotFoundException, IOException {
++        //change part
++       // Path toPath = FileSystems.getDefault().getPath(ziel.getPath());
++        URI zielURI = ziel.toURI();
++        ziel.delete();
++        File outFile = new File(zielURI);
++
++
++        //
+         in = new BufferedInputStream(new FileInputStream(file));
+-        out = new BufferedOutputStream(new FileOutputStream(ziel, true));
++        out = new BufferedOutputStream(new FileOutputStream(outFile, true));
+         int bytes = 0;
+         while ((bytes = in.read()) != -1) {
+             out.write(bytes);
+Index: jmjrst.main/src/test/java/LayoutGalerieTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- jmjrst.main/src/test/java/LayoutGalerieTest.java	(revision a500b16dc52c96f07ee4fdc6e258f9b3b359a7cf)
++++ jmjrst.main/src/test/java/LayoutGalerieTest.java	(revision 2909f574a91dcc5456da4b904abf803af8367903)
+@@ -46,6 +46,7 @@
+ 
+     /**
+      * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
++     * Part c)
+      */
+     @Test
+     public final void testCopyFile() {
+@@ -66,7 +67,7 @@
+             Path toPath = FileSystems.getDefault().getPath(toFile.getPath());
+             String contents = Files.readString(toPath);
+ 
+-            assertEquals(randomString, contents.substring(contents.length() - array.length));
++            assertEquals(randomString, contents);
+         } catch (IOException e) {
+             fail();
+         }
+@@ -75,6 +76,7 @@
+ 
+     /**
+      * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
++     * Part d)
+      */
+     @Test(expected = FileNotFoundException.class)
+     public final void testCopyFile2() throws IOException {
+@@ -83,6 +85,7 @@
+ 
+     /**
+      * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
++     * Part d)
+      */
+     @Test(expected = FileNotFoundException.class)
+     public final void testCopyFile3() throws IOException {
+@@ -90,12 +93,49 @@
+     }
+ 
+     /**
+-     * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
+-     */
++     * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}
++     * Part d)
++     **/
+     @Test(expected = FileNotFoundException.class)
+     public final void testCopyFile4() throws IOException {
+         fromFile = new File(resourceFolder.toURI());
+         galerieUnderTest.copyFile(fromFile, toFile);
+     }
+ 
++    /**
++     * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
++     * Part e)
++     */
++    @Test
++    public final void testCopyFile5() throws IOException {
++        //Create a existed File named toFile.
++        byte[] array = new byte[10];
++        new Random().nextBytes(array);
++        randomString = new String(array);
++
++        Path toPath = FileSystems.getDefault().getPath(toFile.getPath());
++        Files.writeString(toPath, randomString);
++
++        assertTrue(toFile.exists());
++
++        //Create a from file.
++        byte[] fromFileArray = new byte[10];
++        new Random().nextBytes(fromFileArray);
++        randomString = new String(fromFileArray);
++
++        Path fromPath = FileSystems.getDefault().getPath(fromFile.getPath());
++        Files.writeString(fromPath, randomString);
++
++        galerieUnderTest.copyFile(fromFile, toFile);
++
++        //fromFile Strings and toFile strings
++        Path toFilePath = FileSystems.getDefault().getPath(toFile.getPath());
++        String toFileContents = Files.readString(toFilePath);
++
++        Path fromFilePath = FileSystems.getDefault().getPath(fromFile.getPath());
++        String fromFileContents = Files.readString(fromFilePath);
++        //Compare two files
++        assertEquals(fromFileContents,toFileContents);
++    }
++
+ }
+\ No newline at end of file

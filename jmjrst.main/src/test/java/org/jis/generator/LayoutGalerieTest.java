@@ -1,4 +1,4 @@
-//package org.jis.generator;
+package org.jis.generator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -6,15 +6,11 @@ import static org.junit.Assert.fail;
 
 import java.io.*;
 import java.net.URISyntaxException;
-import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Random;
-
-import org.jis.generator.LayoutGalerie;
-
 
 import org.junit.After;
 import org.junit.Before;
@@ -47,7 +43,10 @@ public class LayoutGalerieTest {
 
     @After
     public final void tearDown() {
-        resourceFolder.delete();
+        for (File f : resourceFolder.listFiles()) {
+            f.delete();
+        }
+
     }
 
     /**
