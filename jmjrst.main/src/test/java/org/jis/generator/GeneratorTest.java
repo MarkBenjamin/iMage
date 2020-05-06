@@ -1,6 +1,13 @@
 package org.jis.generator;
 
+import org.jis.Main;
+import org.jis.Messages;
+import org.jis.options.Options;
 import org.junit.*;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.imageio.*;
 import javax.imageio.metadata.IIOMetadata;
@@ -21,6 +28,7 @@ import java.util.Vector;
 
 import static org.junit.Assert.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class GeneratorTest {
     /**
      * Class under test.
@@ -45,11 +53,15 @@ public class GeneratorTest {
      */
     private BufferedImage rotatedImageTestResult;
 
+    @Mock
+    private static Main mockMain;
+
     /**
      * Sicherstellen, dass das Ausgabeverzeichnis existiert und leer ist.
      */
     @BeforeClass
     public static void beforeClass() {
+        mockMain = Mockito.mock(Main.class);
         if (TEST_DIR.exists()) {
             for (File f : TEST_DIR.listFiles()) {
                 f.delete();
@@ -61,7 +73,7 @@ public class GeneratorTest {
 
     @Before
     public void setUp() {
-        this.generator = new Generator(null, 0);
+        this.generator = new Generator(mockMain, 100);
 
         this.testImage = null;
         this.imeta = null;
@@ -267,6 +279,36 @@ public class GeneratorTest {
             assertTrue(true);
         } catch (Exception e) {
             //normally,the execution should never reach here ,so if reach here , we fail this UT
+            assertTrue(false);
+        }
+    }
+
+
+    @Test
+    public void testGenerateText2() {
+        mockMain.mes = new Messages(Options.getInstance().getLocal());
+        try {
+            final URL imageResource = this.getClass().getResource(IMAGE_FILE);
+            File imageDir = new File(imageResource.getFile()).getParentFile();
+            this.generator.generateText(imageDir, TEST_DIR, testImage.getWidth() / 2, testImage.getHeight() / 2);
+            assertTrue(true);
+        } catch (Exception e) {
+            assertTrue(false);
+        }
+    }
+
+    @Test
+    public void testGenerateSingle2() {
+        try {
+
+            mockMain.mes = new Messages(Options.getInstance().getLocal());
+            final URL imageResource = this.getClass().getResource(IMAGE_FILE);
+            File imageFile = new File(imageResource.getFile());
+
+            this.generator.generateSingle(imageFile, testImage);
+
+            assertTrue(true);
+        } catch (Exception e) {
             assertTrue(false);
         }
     }
