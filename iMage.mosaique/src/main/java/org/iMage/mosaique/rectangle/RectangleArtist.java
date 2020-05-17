@@ -1,5 +1,8 @@
 package org.iMage.mosaique.rectangle;
 
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,6 +10,7 @@ import java.util.List;
 
 import org.iMage.mosaique.base.BufferedArtImage;
 import org.iMage.mosaique.base.IMosaiqueArtist;
+import org.iMage.mosaique.base.ImageUtils;
 
 /**
  * This class represents an {@link IMosaiqueArtist} who uses rectangles as tiles.
@@ -27,15 +31,32 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
      * @throws IllegalArgumentException iff tileWidth or tileHeight &lt;= 0, or images is empty.
      */
     public RectangleArtist(Collection<BufferedArtImage> images, int tileWidth, int tileHeight) {
-        this.tiles.addAll(images);
+
         this.tileHeight = tileHeight;
         this.tileWidth = tileWidth;
-
+        for (BufferedArtImage image : images) {
+            ImageUtils.scaleAndCrop(image.toBufferedImage(), tileWidth, tileHeight);
+            this.tiles.add(image);
+        }
     }
 
     @Override
     public List<BufferedImage> getThumbnails() {
-        throw new RuntimeException("not implemented");
+        List<BufferedImage> thumbnails = new ArrayList<>();
+        for (BufferedArtImage image : tiles) {
+            thumbnails.add(thumbnail(image.toBufferedImage()));
+        }
+        return thumbnails;
+    }
+
+    public BufferedImage thumbnail(BufferedImage image) {
+        BufferedImage res = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
+        Graphics2D g2d = res.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.drawRenderedImage(image, AffineTransform.getScaleInstance(1, 1));
+        g2d.dispose();
+        res.flush();
+        return res;
     }
 
     @Override
@@ -57,12 +78,12 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
 
     @Override
     public int getTileWidth() {
-        throw new RuntimeException("not implemented");
+        return this.tileWidth;
     }
 
     @Override
     public int getTileHeight() {
-        throw new RuntimeException("not implemented");
+        return this.tileHeight;
     }
 
     public int[] getAverageColor(BufferedArtImage bufferedArtImage) {

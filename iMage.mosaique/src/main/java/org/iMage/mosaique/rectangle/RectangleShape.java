@@ -65,7 +65,6 @@ public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
         g2d.dispose();
         res.flush();
         return res;
-
     }
 
     @Override
