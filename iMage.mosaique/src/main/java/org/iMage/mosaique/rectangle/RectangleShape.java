@@ -1,8 +1,9 @@
 package org.iMage.mosaique.rectangle;
 
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 
 import org.iMage.mosaique.base.BufferedArtImage;
 import org.iMage.mosaique.base.IMosaiqueShape;
@@ -59,10 +60,12 @@ public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
     public BufferedImage getThumbnail() {
         BufferedImage res = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
         Graphics2D g2d = res.createGraphics();
-        g2d.drawImage(image, 0, 0, (ImageObserver) null);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g2d.drawRenderedImage(image, AffineTransform.getScaleInstance(1, 1));
         g2d.dispose();
         res.flush();
         return res;
+
     }
 
     @Override
