@@ -11,6 +11,19 @@
   		<groupId>swt1</groupId>
   		<artifactId>iMage.mosaique.base</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
+      </dependency>
+        <!--add junit dependency-->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+
   </dependencies>
 </project>

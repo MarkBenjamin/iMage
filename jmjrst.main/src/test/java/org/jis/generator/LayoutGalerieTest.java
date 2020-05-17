@@ -41,13 +41,6 @@ public class LayoutGalerieTest {
 
     }
 
-    @After
-    public final void tearDown() {
-        for (File f : resourceFolder.listFiles()) {
-            f.delete();
-        }
-
-    }
 
     /**
      * Test method for {@link org.jis.generator.LayoutGalerie#copyFile(File, File)}.
