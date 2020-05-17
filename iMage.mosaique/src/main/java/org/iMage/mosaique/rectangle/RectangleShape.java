@@ -13,7 +13,7 @@ import org.iMage.mosaique.base.ImageUtils;
  */
 public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
 
-    private BufferedImage image = null;
+    private BufferedImage image;
 
     /**
      * Create a new {@link IMosaiqueShape}.
@@ -22,9 +22,8 @@ public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
      * @param w     the width
      * @param h     the height
      */
-    public BufferedImage RectangleShape(BufferedArtImage image, int w, int h) {
+    public RectangleShape(BufferedArtImage image, int w, int h) {
         this.image = ImageUtils.scaleAndCrop(image.toBufferedImage(), w, h);
-        return this.image;
     }
 
     @Override
@@ -51,9 +50,7 @@ public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
         int averageGreen = sumGreen / (height * width);
         int averageBlue = sumBlue / (height * width);
 
-        int averageARGB = averageAlpha << 24 + averageRed << 16 + averageGreen + averageBlue;
-        return averageARGB;
-
+        return averageAlpha << 24 + averageRed << 16 + averageGreen << 8 + averageBlue;
     }
 
     @Override
@@ -63,16 +60,23 @@ public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
 
     @Override
     public void drawMe(BufferedArtImage targetRect) {
-        throw new RuntimeException("not implemented");
+        int width = targetRect.getWidth();
+        int height = targetRect.getHeight();
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                targetRect.setRGB(x, y, image.getRGB(x, y));
+            }
+        }
     }
 
     @Override
     public int getHeight() {
-        throw new RuntimeException("not implemented");
+        return image.getHeight();
     }
 
     @Override
     public int getWidth() {
-        throw new RuntimeException("not implemented");
+        return image.getWidth();
     }
 }
