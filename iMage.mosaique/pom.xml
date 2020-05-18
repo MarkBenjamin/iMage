@@ -5,7 +5,10 @@
     <artifactId>iMage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>iMage.mosaique</artifactId>
+
+    <groupId>swt1.ub2.a4</groupId>
+  <artifactId>2254780</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
   <dependencies>
   	<dependency>
   		<groupId>swt1</groupId>
