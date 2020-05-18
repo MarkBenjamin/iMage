@@ -71,8 +71,7 @@ public class RectangleArtistTest {
                 reader.setInput(iis, true);
                 ImageReadParam params = reader.getDefaultReadParam();
                 this.testTiles.add(new BufferedArtImage(reader.read(0, params)));
-                //this.testImage = reader.read(0, params);
-                this.imeta = reader.getImageMetadata(0);
+                //this.imeta = reader.getImageMetadata(0);
                 reader.dispose();
             } catch (IOException e) {
                 fail(e.getMessage());
@@ -133,7 +132,7 @@ public class RectangleArtistTest {
 
     @Test
     public void testTilesAdd() {
-        assertTrue(testTiles.size() == 7);
+        assertEquals(7, testTiles.size());
     }
 
     @Test(expected = NullPointerException.class)
@@ -143,15 +142,16 @@ public class RectangleArtistTest {
 
     @Test
     public void testTileForRegionRight() {
-        BufferedArtImage ret = rectangleArtist.getTileForRegion(testTiles.get(0));
+        BufferedArtImage ret = rectangleArtist.getTileForRegion(testTiles.get(1));
         int width = rectangleArtist.getTileWidth();
         int heigth = rectangleArtist.getTileHeight();
 
         for (int i = 0; i < heigth; i++) {
             for (int j = 0; j < width; j++) {
-                assertEquals(ret.getRGB(i, j), testTiles.get(0).getRGB(i, j));
+                assertEquals(ret.getRGB(i, j), testTiles.get(1).getRGB(i, j));
             }
         }
+
     }
 
     @Test
@@ -165,6 +165,7 @@ public class RectangleArtistTest {
                 assertNotEquals(ret.getRGB(i, j), testTiles.get(1).getRGB(i, j));
             }
         }
+
     }
 
 

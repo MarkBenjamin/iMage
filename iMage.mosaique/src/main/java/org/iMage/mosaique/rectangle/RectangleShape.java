@@ -30,6 +30,9 @@ public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
     }
 
     @Override
+    /*
+     * Return the average color of this rectangleShape.
+     */
     public int getAverageColor() {
         int height = image.getHeight();
         int width = image.getWidth();
@@ -57,6 +60,9 @@ public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
     }
 
     @Override
+    /*
+     * Return a thumbnail of this rectangleShape
+     */
     public BufferedImage getThumbnail() {
         BufferedImage res = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
         Graphics2D g2d = res.createGraphics();
@@ -68,6 +74,9 @@ public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
     }
 
     @Override
+    /*
+     * Draw the targetRect with this.image
+     */
     public void drawMe(BufferedArtImage targetRect) {
         int width = targetRect.getWidth();
         int height = targetRect.getHeight();
@@ -80,11 +89,17 @@ public class RectangleShape implements IMosaiqueShape<BufferedArtImage> {
     }
 
     @Override
+    /*
+     * Get the height of the image.
+     */
     public int getHeight() {
         return image.getHeight();
     }
 
     @Override
+    /*
+     * Get the width of the image.
+     */
     public int getWidth() {
         return image.getWidth();
     }

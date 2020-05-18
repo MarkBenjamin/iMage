@@ -39,6 +39,9 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
     }
 
     @Override
+    /*
+     * Get the thumbnails of the tiles list.
+     */
     public List<BufferedImage> getThumbnails() {
         List<BufferedImage> thumbnails = new ArrayList<>();
         for (BufferedArtImage image : tiles) {
@@ -47,6 +50,12 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
         return thumbnails;
     }
 
+    /**
+     * Return the thumbnail of one image.
+     *
+     * @param image the image to be thumbed.
+     * @return the thumbnail.
+     */
     public BufferedImage thumbnail(BufferedArtImage image) {
         BufferedImage res = new BufferedImage(image.getWidth(), image.getHeight(), 2);
         Graphics2D g2d = res.createGraphics();
@@ -58,6 +67,9 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
     }
 
     @Override
+    /**
+     * Return the nearest tile in average color of the given image "region"
+     */
     public BufferedArtImage getTileForRegion(BufferedArtImage region) {
         int[] regionAverageColor = getAverageColor(region);
         double minDistance = euclideanDistance(regionAverageColor, getAverageColor(tiles.get(0)));
@@ -74,15 +86,27 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
     }
 
     @Override
+    /*
+     * Get tile width.
+     */
     public int getTileWidth() {
         return this.tileWidth;
     }
 
     @Override
+    /*
+     * Get tile height.
+     */
     public int getTileHeight() {
         return this.tileHeight;
     }
 
+    /**
+     * get the average color of given image.
+     *
+     * @param bufferedArtImage the image to be calculated.
+     * @return a ARGB Format color.
+     */
     public int[] getAverageColor(BufferedArtImage bufferedArtImage) {
         int height = bufferedArtImage.getHeight();
         int width = bufferedArtImage.getWidth();
@@ -114,6 +138,13 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
         return averageColor;
     }
 
+    /**
+     * Calculate the euclidean distance between two point.
+     *
+     * @param point1 point1
+     * @param point2 point2
+     * @return euclidean distance.
+     */
     double euclideanDistance(int[] point1, int[] point2) {
         double distanceSquare = 0;
         for (int i = 0; i < point1.length; i++) {
