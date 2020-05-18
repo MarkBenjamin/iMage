@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.iMage.mosaique.base.BufferedArtImage;
 import org.iMage.mosaique.base.IMosaiqueArtist;
-import org.iMage.mosaique.base.ImageUtils;
 
 /**
  * This class represents an {@link IMosaiqueArtist} who uses rectangles as tiles.
@@ -35,8 +34,7 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
         this.tileHeight = tileHeight;
         this.tileWidth = tileWidth;
         for (BufferedArtImage image : images) {
-            ImageUtils.scaleAndCrop(image.toBufferedImage(), tileWidth, tileHeight);
-            this.tiles.add(image);
+            this.tiles.add(new BufferedArtImage(thumbnail(image)));
         }
     }
 
@@ -44,16 +42,16 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
     public List<BufferedImage> getThumbnails() {
         List<BufferedImage> thumbnails = new ArrayList<>();
         for (BufferedArtImage image : tiles) {
-            thumbnails.add(thumbnail(image.toBufferedImage()));
+            thumbnails.add(thumbnail(image));
         }
         return thumbnails;
     }
 
-    public BufferedImage thumbnail(BufferedImage image) {
-        BufferedImage res = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
+    public BufferedImage thumbnail(BufferedArtImage image) {
+        BufferedImage res = new BufferedImage(image.getWidth(), image.getHeight(), 2);
         Graphics2D g2d = res.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        g2d.drawRenderedImage(image, AffineTransform.getScaleInstance(1, 1));
+        g2d.drawRenderedImage(image.toBufferedImage(), AffineTransform.getScaleInstance(1, 1));
         g2d.dispose();
         res.flush();
         return res;
@@ -73,7 +71,6 @@ public class RectangleArtist implements IMosaiqueArtist<BufferedArtImage> {
             }
         }
         return targetTile;
-
     }
 
     @Override
