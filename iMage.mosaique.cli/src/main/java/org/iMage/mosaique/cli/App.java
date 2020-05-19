@@ -74,7 +74,7 @@ public final class App {
             System.exit(1);
         }
         if (tiles.length < 10) {
-            System.err.println("Too few tile images!");
+            System.err.println("Too many tile images!");
             System.exit(1);
         }
 

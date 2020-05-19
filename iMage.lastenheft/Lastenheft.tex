@@ -16,39 +16,13 @@ bookmarks=true,%
 %
 % % Glossareinträge
 %
-\newglossaryentry{Dozent}
+\newglossaryentry{Bildreihe}
 {
-	name=Dozent,
-	plural=Dozenten,
-	description={Leiter eines oder mehrerer Seminartypen},
+	name=Bildreihe,
+	plural=Bildreihen,
+	description={Menge von Bildern mit gleichem Motiv aber unterschiedlichen Aufnahmenparametern, z.B. Belichtungszeit, Blende oder Sensor-Empfindlichkeit},
 }
 
-\newglossaryentry{Kunde}
-{
-	name=Kunde,
-	plural=Kunden,
-	description={(Zahlende) Teilnehmer einer oder mehrerer Seminarveranstaltung/en}
-}
-
-\newglossaryentry{Seminartyp}
-{
-	name=Seminartyp,
-	plural=Seminartypen,
-	description={Typ einer Lehrveranstaltung (z.B. \enquote{Schöner Malen -- Anfängerkurs})}
-}
-
-\newglossaryentry{Seminarveranstaltung}
-{
-	name=Seminarveranstaltung,
-	plural=Seminarveranstaltungen,
-	description={Tatsächlich stattfindende Lehrveranstaltung (z.B. \enquote{Schöner Malen -- Anfängerkurs, Sommer 2014})}
-}
-
-\newglossaryentry{Computer}
-{
-	name=Computer,
-	description={Gerät zur Verarbeitung zur Daten, das die Daten einlesen, verarbeiten, speichern und ausgeben kann}
-}
 
 \title{SWT1: Lastenheftvorlage}
 \author{Siyan Li, 2254780}
@@ -57,116 +31,109 @@ bookmarks=true,%
 
 \maketitle
 
-%
-% % Hinweise - sollen nicht im endgültigen Dokument erscheinen, daher vor der Abgabe löschen!
-%
-\section{Vorwort}
-Die Dokumentation der Pakete ist häufig lesenswert.
-Insbesondere bei den Paketen hyperref und scrguide (KOMA-Script).
-Wer TeXLivei per Kommandozeile benutzt kann einfach texdoc scrguide aufrufen.
-Windows-Benutzer, die noch nie mit Latex gearbeitet haben, können sich alternativ MikTex anschauen; Mac-Benutzer MacTex.
-
-Zum Erzeugen eines PDFs aus den LATEX-Sourcen empfehlen wir einen Wrapper wie latexmk\footnote{\url{https://www.ctan.org/tex-archive/support/latexmk}} oder einen Editor wie TeXStudio\footnote{\url{http://www.texstudio.org/}} zu verwenden.
-Dieser übernimmt beispielsweise das mehrfache Ausführen von pdflatex, wo es notwendig ist.
-
-Legen Sie für dieses Dokument ein neues Verzeichnis in Ihrem Git an, zum Beispiel \texttt{image.lastenheft} und speichern Sie alle benötigten Dateien darin.
-Speichern Sie keine von Latex generierten Dateien (außer dem PDF) im Git.
-Dies geschieht über die mitgelieferte \texttt{.gitignore}.
-Sie können aber auch Ihre persönliche \texttt{.gitignore} bei Bedarf erweitern.
-
-\section{Technisches Schreiben}
-
-Technisches Schreiben ist wichtig für alle Arten von technischen und wissenschaftlichen Dokumenten, also auch im PSE und in der Bachelorarbeit.
-Es bedeutet vor allem eine präzise Ausdrucksweise und widerspricht dabei einigen Regeln, die man im Deutschunterricht gelernt hat.
-Ein paar praktische Tipps (aus den PSE-Dokumenten von Prof. Snelting):
-\begin{itemize}[nosep]
-\item Vermeide Adjektive.
-      Oft (nicht immer) sind sie unnötig oder ein schlechter Ersatz für einen ungenauen Begriff.
-\item Nebensatzkonstruktionen vermeiden; Hauptsätze verwenden!
-\item Definiere Begriffe klar und verwende keine Synonyme.
-      Synonyme lassen offen, ob genau das gleiche gemeint ist oder nur etwas ähnliches.
-      Definiere spezielle Begriffe, z.B. \gls{Computer}, in einem Glossar und verweise im Dokument entsprechend darauf.
-\item Abkürzungen sollten bei der ersten Verwendung (EV) ausgeschrieben werden.
-      Nach der EV reicht dann die Kurzform.
-\item Versuche konkrete Zahlen und Namen anzugeben.
-      Vermeide ungenaue Ausflüchte wie: meistens, viele, oft, möglichst, üblich, jemand, manche.
-\item Viele kurze Sätze sind einfacher zu verstehen als wenige lange Sätze.
-\item Beispiele machen das Endprodukt greifbarer.
-\item Illustrationen minimalistisch halten (z.B. IKEA Bauanleitung).
-      Eine Information, ein Bild.
-      Lieber mehrere ähnliche Bilder als ein komplexes Bild.
-\item Vermeide Wiederholung, stattdessen Referenzen benutzen.
-      Wiederholungen haben oft subtile Unterschiede, was zu Unklarheit und Verwirrung führt.
-      Bei Änderungen wird oft vergessen, dass Wiederholungen auch angepasst werden müssen.
-\item Versionskontrolle ergibt auch für technische Texte Sinn und nicht nur für Code.
-\end{itemize}
 
 %
 % % Hier beginnt die Gliederung des Lastenhefts
 %
 \section{Zielbestimmung}
-Die Firma Teachware soll durch das Produkt in die Lage versetzt werden, die von ihr veranstalteten Seminare rechnerunterstützt zu verwalten.
+Die Firma Pear Corp. soll in der Lage versetzt werden, ihr Produkt iMage als Applikation zur Anwendung von Kunstfiltern vermarken.
 
 \section{Produkteinsatz}
-Das Produkt dient zur Kunden- und Seminarverwaltung der Firma Teachware. Außerdem sollen verschiedene Anfragen beantwortet werden können.
+Das System soll als Klient-Dienstgeber-System implementiert werden.
+Der Dienstgeber ist für die Berechnung Kunstfiltern  zuständig, soll als Web-Applikation zur Verfügung gestellt werden und auf dem Firmen-internen
+Service der Pear Corp. laufen.
 
-Zielgruppe: die Mitarbeiter der Firma Teachware.
+Zielgruppe: alle Leute
 
-Plattform: PC mit Windows XP oder Nachfolger-Betriebssystem
+Plattform: Handy mit Android oder ios.
 
 \section{Funktionale Anforderungen}
 \begin{itemize}[nosep]
-\item[FA10] Ersterfassung, Änderung und Löschung von \glspl{Kunde} (Teilnehmer, Interessenten).
-\item[FA20] Benachrichtigung der Kunden (Anmeldebestätigung, Abmeldebestätigung, Änderungsmitteilungen, Rechnung, Werbung).
-\item[FA30] Ersterfassung, Änderung und Löschung von Seminarveranstaltungen und Seminartypen.
-\item[FA40] Ersterfassung, Änderung und Löschung von \glspl{Dozent} sowie Zuordnung zu \glspl{Seminarveranstaltung} und \glspl{Seminartyp}.
-\item[FA50] Ersterfassung, Änderung und Löschung von Seminarbuchungen.
-\item[FA60] Erstellung von Rechnungen.
-\item[FA70] Erstellung verschiedener Listen (Teilnehmerliste, Umsatzliste, Teilnehmerbescheinigungen).
-\item[FA80] Anfragen der folgenden Art sollen möglich sein:
-     Wann findet das nächste Seminar X statt? Welche Mitarbeiter der Firma Y haben das Seminar X besucht?
+	\item[FA10] Vorgehen anbieten.
+	\item[FA11] Suchen von Bildern.
+	\item[FA12] Anzeigen von letzten Bildern.
+	\item[FA13] Suchverfahren mit integrierter Komprimierung wählen.  
+	\item[FA20] Verschiedene Optionen auswählen.
+	\item[FA21] Anzahl auswählen.
+	\item[FA22] Nutzungsrechte auswählen.
+	\item[FA23] Dateiformat auswählen.
+	\item[FA24] Größe der zu suchenden Bilder konfiguriern.
+	\item[FA30] Die (Sub)Domänen angeben.
+	\item[FA31] Die Domänen nach Bildern suchen.
+	\item[FA40] Die letzte Bildern anzeigen.
+	\item[FA50] Die Bildern filtern und sortieren.
+	\item[FA51] Die Bildern nach  Kriterien filtern und sortieren.
+	\item[FA52] Die Bildern nach mittlerer Farbwert filtern und sortieren.
+	\item[FA53] Die Bildern nach  Namen filtern und sortieren.
+	\item[FA54] Die Bildern nach  Herkunft filtern und sortieren. 
+
 \end{itemize}
 
 \section{Produktdaten}
 \begin{itemize}[nosep]
-\item[PD10] Es sind relevante Daten über die Kunden zu speichern.
-\item[PD20] Falls ein Kunde zu einer Firma gehört, dann sind relevante Daten über die Firma zu speichern.
-\item[PD30] Es sind relevante Daten über Seminarveranstaltungen, Seminartypen und Dozenten zu speichern.
-\item[PD40] Bucht ein Kunde eine Seminarveranstaltung, dann sind entsprechende Buchungsdaten zu speichern.
+	\item[PD10] Es sind relevante Daten über die Kunden zu speichern.
+	\item[PD20] Die geladenen Bildern sind zu speichern.
+	\item[PD30] Die Nutzer ausgewählt Bilder soll auf Corp-Zentralserver hochgeladen werden.
+	\item[PD40] Eine URL von Bilder speichern.
 \end{itemize}
 
 \section{Nichtfunktionale Anforderungen}
 \begin{itemize}[nosep]
-\item[NF10] Die Funktion /FA80/ darf nicht länger als 15 Sekunden Interaktionszeit benötigen, alle anderen Reaktionszeiten müssen unter 2 Sekunden liegen.
-\item[NF20] Es müssen maximal 50.000 Teilnehmer und maximal 10.000 Seminare verwaltet werden können.
+	\item[NF10] Die Suche von 500 Bildern benötigten maximal 10 Minuten.
+	\item[NF20] Die Suche soll nach einer Studen selbst abbrechen.
+	\item[NF30] Der Zugriff auf den Zentralserver soll von mindestens 100 Nutzern gleichzeitig erfolgen können.
+	\item[NF40] Die Dauer des Hochladens der Bilder maximal linear mit der Anzahl der Bildern wachsen.
+	\item[NF50] Der maximale Grad an Komprimierung soll die Motive in 90percent der Bilder erkennbar bleiben.
+	\item[NF60] Die Suche mit Komprimierung soll maximal doppelt solange benötigten wie die reine Suche.   
 \end{itemize}
 
 \section{Systemmodelle}
 
 \subsection{Szenarien}
+\begin{itemize}[nosep]
+	\item Der Nutzer klickt auf der Startseite die letzten Bilder anzeigen. 
+	Dann erhalten Der Nutzer eine Übersicht über alle geladenen Bildern.
+	Der Nutzer sotiert dann die Bilder nach mittlerer Farbwert. 
+	Die reste Bilder werden von dem Nutzer auf dem Handy speichert.
+
+	\item Der Nutzer öffnet die Applikation.
+	Der Nutzer sucht Bilder dann nach eingegebenen Suchverfahren.
+	Außerdem gibt der Nutzer auch die Anzahl, Format und Size von den Bildern ein.
+	Der Nutzer wählt dann ein Bilder aus und auf Corp-server hochladet.
+\end{itemize}
+	
 
 \subsection{Anwendungsfälle}
 \subsubsection{Seminarorganisation}
 \begin{center}
-\includegraphics[width=0.8\textwidth]{szenario_seminarorganisation.pdf}
+	\includegraphics[width=0.8\textwidth]{Anwendungsfall.jpg}
 \end{center}
 
-Akteure: Kundensachbearbeiter, Seminarsachbearbeiter.
+\section{Durchführbarkeitsuntersuchung}
 
-Anwendungsfälle: Kundenverwaltung, Rechnungsstellung, Anfragebearbeitung, Dozentenverwaltung, Listenverwaltung, Seminarverwaltung.
+\subsection{Prüfen der fachlichen Durchführbarkeit}
+\begin{itemize}
+	\item Technische Infrastruktur vorhaden oder leicht beschaffbar.
+\end{itemize}
 
-Textuelle Beschreibung: (folgt)
-
-
-
-%
-% % Automatisch generiertes Glossar (Latex zwei mal ausführen um Glossar anzuzeigen)
-%
-%\glsaddall % das sorgt dafür, dass alles Glossareinträge gedruckt werden, nicht nur die verwendeten. Das sollte nicht nötig sein!
-\printnoidxglossaries
-Siehe \url{https://en.wikibooks.org/wiki/LaTeX/Glossary}.
-
-
-
-
+\subsection{Prüfen alternativer Lösungsvorschläge}
+\begin{itemize}
+	\item Verwendung vorhandener Bilderverarbeitungsalgorithmen möglich.
+\end{itemize}
+\subsection{Prüfen der personellen Durchführbarkeit}
+\begin{itemize}
+	\item Fachkräfte in andere Projekte eingebunden
+\end{itemize}
+\subsection{Prüfen der Risiken}
+\begin{itemize}
+	\item Kunden stark interessiert an dieser Funktion.
+\end{itemize}
+\subsection{Prüfen der ökonomischen Durchführbarkeit}
+\begin{itemize}
+	\item Aufwands- und Terminschätzung: Aufwand machbar bis zur Veröffentlichung
+\end{itemize}
+\subsection{Rechtliche Gesichtspunkte}
+\begin{itemize}
+	\item Patente der Firma Abode prüfen und ggf. ankaufen
+\end{itemize}
 \end{document}
